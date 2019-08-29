@@ -7,11 +7,11 @@
 ## DEFINE VPC
 #---------------------------------------------------------
 variable "vpc-name" {
-  default = "vpc-name-here"
+  default = "automated-vpc"
 }
 
 variable "resource_group" {
-  default = "resource-name-goes-here"
+  default = "VPCTesting"
 }
 
 variable "cis_resource_group" {
@@ -94,7 +94,7 @@ variable "dns_name" {
 ## DEFINE sshkey to be used for compute instances
 #---------------------------------------------------------
 variable "ssh_public_key" {
-  default = "~/.ssh/id_rsa.pub"
+  default = "here.pub"
 }
 
 #---------------------------------------------------------
@@ -103,14 +103,14 @@ variable "ssh_public_key" {
 
 #image = Ubuntu-16.04-amd64
 variable "image" {
-  default = "7eb4e35b-4257-56f8-d7da-326d85452591"
+  default = "bf962ae4-4140-462b-8fa3-56fa1b49b06a"
 }
 
 #---------------------------------------------------------
 ## DEFINE webapptier compute instance profile & quantity
 #---------------------------------------------------------
 variable "profile-webappserver" {
-  default = "cc1-2x4"
+  default = "b2-2x8"
 }
 
 variable "webappserver-name" {
@@ -118,14 +118,14 @@ variable "webappserver-name" {
 }
 
 variable "webappserver-count" {
-  default = 1
+  default = 45
 }
 
 #---------------------------------------------------------
 ## DEFINE database tier compute instance profile & quantity
 #---------------------------------------------------------
 variable "profile-dbserver" {
-  default = "bc1-4x16"
+  default = "b2-2x8"
 }
 
 variable "dbserver-name" {
@@ -133,7 +133,7 @@ variable "dbserver-name" {
 }
 
 variable "dbserver-count" {
-  default = 1
+  default = 49
 }
 
 #---------------------------------------------------------
@@ -156,7 +156,7 @@ variable "onprem_vpn_ip_address" {
 }
 
 variable "onprem_cidr" {
-  default = "192.168.248.0/24"
+  default = "192.168.1.0/24"
 }
 
 variable "vpn-preshared-key" {

@@ -13,7 +13,7 @@ data "ibm_resource_group" "group" {
 resource "ibm_is_vpc" "vpc1" {
   name                = "${var.vpc-name}"
   resource_group      = "${data.ibm_resource_group.group.id}"
-  default_network_acl = "${ibm_is_network_acl.default_acl.id}"
+#  default_network_acl = "${ibm_is_network_acl.default_acl.id}"
 }
 
 #---------------------------------------------------------
@@ -36,17 +36,17 @@ resource "ibm_is_vpc_address_prefix" "prefix2" {
 #---------------------------------------------------------
 # Get Public Gateway's for Zone 1 & Zone 2
 #---------------------------------------------------------
-resource "ibm_is_public_gateway" "pubgw-zone1" {
-  name = "${var.vpc-name}-${var.zone1}-pubgw"
-  vpc  = "${ibm_is_vpc.vpc1.id}"
-  zone = "${var.zone1}"
-}
+#resource "ibm_is_public_gateway" "pubgw-zone1" {
+#  name = "${var.vpc-name}-${var.zone1}-pubgw"
+#  vpc  = "${ibm_is_vpc.vpc1.id}"
+#  zone = "${var.zone1}"
+#}
 
-resource "ibm_is_public_gateway" "pubgw-zone2" {
-  name = "${var.vpc-name}-${var.zone2}-pubgw"
-  vpc  = "${ibm_is_vpc.vpc1.id}"
-  zone = "${var.zone2}"
-}
+#resource "ibm_is_public_gateway" "pubgw-zone2" {
+#  name = "${var.vpc-name}-${var.zone2}-pubgw"
+#  vpc  = "${ibm_is_vpc.vpc1.id}"
+#  zone = "${var.zone2}"
+#}
 
 #---------------------------------------------------------
 ## Create Webapp & Db Subnets in Zone1
@@ -56,8 +56,6 @@ resource "ibm_is_subnet" "webapptier-subnet-zone1" {
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone1}"
   ipv4_cidr_block = "${var.webapptier-subnet-zone-1}"
-  network_acl     = "${ibm_is_network_acl.webapptier_acl.id}"
-  public_gateway  = "${ibm_is_public_gateway.pubgw-zone1.id}"
 
   provisioner "local-exec" {
     command = "sleep 300"
@@ -70,8 +68,6 @@ resource "ibm_is_subnet" "dbtier-subnet-zone1" {
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone1}"
   ipv4_cidr_block = "${var.dbtier-subnet-zone-1}"
-  network_acl     = "${ibm_is_network_acl.dbtier_acl.id}"
-  public_gateway  = "${ibm_is_public_gateway.pubgw-zone1.id}"
 
   provisioner "local-exec" {
     command = "sleep 300"
@@ -87,8 +83,6 @@ resource "ibm_is_subnet" "webapptier-subnet-zone2" {
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone2}"
   ipv4_cidr_block = "${var.webapptier-subnet-zone-2}"
-  network_acl     = "${ibm_is_network_acl.webapptier_acl.id}"
-  public_gateway  = "${ibm_is_public_gateway.pubgw-zone2.id}"
 
   provisioner "local-exec" {
     command = "sleep 300"
@@ -101,8 +95,6 @@ resource "ibm_is_subnet" "dbtier-subnet-zone2" {
   vpc             = "${ibm_is_vpc.vpc1.id}"
   zone            = "${var.zone2}"
   ipv4_cidr_block = "${var.dbtier-subnet-zone-2}"
-  network_acl     = "${ibm_is_network_acl.dbtier_acl.id}"
-  public_gateway  = "${ibm_is_public_gateway.pubgw-zone2.id}"
 
   provisioner "local-exec" {
     command = "sleep 300"

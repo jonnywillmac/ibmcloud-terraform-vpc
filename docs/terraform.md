@@ -82,6 +82,12 @@ Documentation for the IBM provider can be found at: [https://ibm-cloud.github.io
     terraform apply
     ```
     
+    - To execute with higher parallelism (to speed up provisioning times)
+    
+    ```shell
+    terraform apply --parallelism 50
+    ```
+    
     - To destroy the VPC and all related resources
     
     ````shell

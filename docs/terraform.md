@@ -65,7 +65,7 @@ Documentation for the IBM provider can be found at: [https://ibm-cloud.github.io
     
     ```shell
     export IC_REGION="us-south"
-    export IC_GENERATION="1"
+    export IC_GENERATION="2"
     export IC_API_KEY="api_key"
     terraform init
     ```

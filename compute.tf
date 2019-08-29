@@ -17,8 +17,7 @@ resource "ibm_is_instance" "webappserver-zone1" {
 
   primary_network_interface = {
     subnet          = "${ibm_is_subnet.webapptier-subnet-zone1.id}"
-    security_groups = ["${ibm_is_security_group.webapptier-securitygroup.id}"]
-  }
+}
 
   vpc       = "${ibm_is_vpc.vpc1.id}"
   zone      = "${var.zone1}"
@@ -34,7 +33,6 @@ resource "ibm_is_instance" "dbserver-zone1" {
 
   primary_network_interface = {
     subnet          = "${ibm_is_subnet.dbtier-subnet-zone1.id}"
-    security_groups = ["${ibm_is_security_group.dbtier-securitygroup.id}"]
   }
 
   vpc       = "${ibm_is_vpc.vpc1.id}"
@@ -54,7 +52,6 @@ resource "ibm_is_instance" "webappserver-zone2" {
 
   primary_network_interface = {
     subnet          = "${ibm_is_subnet.webapptier-subnet-zone2.id}"
-    security_groups = ["${ibm_is_security_group.webapptier-securitygroup.id}"]
   }
 
   vpc       = "${ibm_is_vpc.vpc1.id}"
@@ -71,7 +68,6 @@ resource "ibm_is_instance" "dbserver-zone2" {
 
   primary_network_interface = {
     subnet          = "${ibm_is_subnet.dbtier-subnet-zone2.id}"
-    security_groups = ["${ibm_is_security_group.dbtier-securitygroup.id}"]
   }
 
   vpc       = "${ibm_is_vpc.vpc1.id}"
@@ -98,4 +94,3 @@ resource "ibm_is_instance" "dbserver-zone2" {
 #  name    = "${format(var.webappserver-name, count.index + 1)}-${var.zone2}-fip"
 #  target  = "${element(ibm_is_instance.webappserver-zone2.*.primary_network_interface.0.id, count.index)}"
 #}
-

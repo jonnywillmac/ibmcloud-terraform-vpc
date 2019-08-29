@@ -118,7 +118,7 @@ variable "webappserver-name" {
 }
 
 variable "webappserver-count" {
-  default = 45
+  default = 25
 }
 
 #---------------------------------------------------------
@@ -133,7 +133,7 @@ variable "dbserver-name" {
 }
 
 variable "dbserver-count" {
-  default = 49
+  default = 25
 }
 
 #---------------------------------------------------------
